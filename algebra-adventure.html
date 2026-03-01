@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Algebra Adventure 🚀</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d2b;
+    --card: #16163a;
+    --card2: #1e1e4a;
+    --purple: #7c3aed;
+    --pink: #ec4899;
+    --cyan: #06b6d4;
+    --yellow: #fbbf24;
+    --green: #10b981;
+    --orange: #f97316;
+    --text: #f0f0ff;
+    --muted: #9090c0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Stars background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(2px 2px at 50% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 40%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(2px 2px at 80% 25%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 50%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(2px 2px at 25% 35%, rgba(255,255,255,0.5) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* HEADER */
+  header {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    background: linear-gradient(135deg, var(--cyan), var(--purple), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: pulse-text 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-text {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
+  }
+
+  .tagline {
+    font-size: 1.2rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    font-weight: 600;
+  }
+
+  /* XP BAR */
+  .xp-bar-container {
+    max-width: 500px;
+    margin: 1rem auto;
+    background: var(--card2);
+    border-radius: 99px;
+    padding: 6px;
+    border: 2px solid rgba(124,58,237,0.4);
+  }
+
+  .xp-bar-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .xp-label { font-size: 0.85rem; color: var(--yellow); font-weight: 700; white-space: nowrap; }
+
+  .xp-track {
+    flex: 1;
+    height: 14px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .xp-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    border-radius: 99px;
+    transition: width 0.5s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .xp-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer { to { left: 200%; } }
+
+  /* NAV TABS */
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tab-btn {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 99px;
+    cursor: pointer;
+    background: var(--card2);
+    color: var(--muted);
+    border: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .tab-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+  .tab-btn.active {
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(124,58,237,0.5);
+  }
+
+  /* MAIN CONTENT */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem 1rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; animation: fadeUp 0.4s ease; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  .card-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .card-title span { font-size: 1.8rem; }
+
+  /* VARIABLE VISUALIZER */
+  .var-demo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+  }
+
+  .mystery-box {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 15px rgba(124,58,237,0.5);
+    animation: float 3s ease-in-out infinite;
+    user-select: none;
+    font-family: 'Fredoka One', cursive;
+    color: white;
+    position: relative;
+  }
+
+  .mystery-box:hover { transform: scale(1.1) rotate(5deg); }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .var-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .var-slider {
+    -webkit-appearance: none;
+    width: 200px;
+    height: 8px;
+    background: var(--card2);
+    border-radius: 99px;
+    outline: none;
+  }
+
+  .var-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    background: linear-gradient(135deg, var(--cyan), var(--purple));
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(6,182,212,0.5);
+  }
+
+  .equation-display {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+    padding: 0.8rem 1.2rem;
+    background: var(--card2);
+    border-radius: 12px;
+    border-left: 4px solid var(--cyan);
+    color: var(--cyan);
+    font-family: 'Fredoka One', cursive;
+    letter-spacing: 0.05em;
+  }
+
+  /* BALANCE SCALE */
+  .scale-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .scale-svg-container { width: 100%; max-width: 400px; }
+
+  .scale-sides {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .scale-side {
+    flex: 1;
+    min-width: 140px;
+    max-width: 180px;
+    background: var(--card2);
+    border-radius: 14px;
+    padding: 1rem;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  .scale-side.left { border-color: rgba(6,182,212,0.4); }
+  .scale-side.right { border-color: rgba(236,72,153,0.4); }
+
+  .scale-value {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.5rem;
+    display: block;
+  }
+
+  .scale-value.left { color: var(--cyan); }
+  .scale-value.right { color: var(--pink); }
+
+  .scale-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+
+  .scale-status {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 99px;
+    transition: all 0.3s;
+  }
+
+  .scale-status.balanced { background: rgba(16,185,129,0.2); color: var(--green); }
+  .scale-status.unbalanced { background: rgba(249,115,22,0.2); color: var(--orange); }
+
+  /* QUIZ SECTION */
+  .quiz-q {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .quiz-q .eq {
+    font-family: 'Fredoka One', cursive;
+    color: var(--cyan);
+    font-size: 1.6rem;
+  }
+
+  .choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+  }
+
+  .choice-btn {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.8rem;
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    background: var(--card2);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .choice-btn:hover { border-color: var(--purple); transform: scale(1.02); }
+  .choice-btn.correct { background: rgba(16,185,129,0.25); border-color: var(--green); color: var(--green); }
+  .choice-btn.wrong { background: rgba(239,68,68,0.2); border-color: #ef4444; color: #ef4444; }
+
+  .quiz-feedback {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    min-height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  /* GRAPHING */
+  #graph-canvas {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 14px;
+    background: var(--card2);
+  }
+
+  .graph-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+
+  .graph-input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--card2);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .graph-input-group label { font-weight: 700; color: var(--muted); font-size: 0.9rem; }
+
+  .graph-input-group input {
+    width: 60px;
+    background: transparent;
+    border: none;
+    color: var(--cyan);
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    outline: none;
+  }
+
+  .graph-eq {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--pink);
+    margin: 0.5rem 0;
+  }
+
+  /* BADGES */
+  .badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .badge {
+    background: var(--card2);
+    border-radius: 16px;
+    padding: 1rem 0.7rem;
+    text-align: center;
+    border: 2px solid rgba(255,255,255,0.07);
+    transition: all 0.3s;
+    opacity: 0.4;
+    filter: grayscale(1);
+  }
+
+  .badge.earned {
+    opacity: 1;
+    filter: none;
+    border-color: var(--yellow);
+    box-shadow: 0 0 20px rgba(251,191,36,0.3);
+    animation: badge-pop 0.5s ease;
+  }
+
+  @keyframes badge-pop {
+    0% { transform: scale(0.8); }
+    70% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+  .badge-icon { font-size: 2.5rem; display: block; }
+  .badge-name { font-size: 0.75rem; font-weight: 700; margin-top: 0.4rem; color: var(--muted); }
+  .badge.earned .badge-name { color: var(--yellow); }
+
+  /* CONFETTI */
+  .confetti-piece {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: confetti-fall linear forwards;
+  }
+
+  @keyframes confetti-fall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* DRAG GAME */
+  .drag-area {
+    min-height: 60px;
+    background: var(--card2);
+    border-radius: 12px;
+    padding: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    border: 2px dashed rgba(255,255,255,0.1);
+    transition: border-color 0.2s;
+    margin: 0.5rem 0;
+  }
+
+  .drag-area.over { border-color: var(--cyan); background: rgba(6,182,212,0.05); }
+
+  .drag-tile {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: grab;
+    user-select: none;
+    font-size: 1.1rem;
+    transition: transform 0.1s;
+  }
+
+  .drag-tile:active { cursor: grabbing; transform: scale(0.95); }
+  .drag-tile.num { background: rgba(6,182,212,0.2); color: var(--cyan); border: 1px solid rgba(6,182,212,0.3); }
+  .drag-tile.var-tile { background: rgba(124,58,237,0.2); color: #a78bfa; border: 1px solid rgba(124,58,237,0.3); }
+  .drag-tile.op { background: rgba(251,191,36,0.15); color: var(--yellow); border: 1px solid rgba(251,191,36,0.3); }
+
+  /* SOLVE STEPS */
+  .step-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    animation: fadeUp 0.3s ease;
+  }
+
+  .step-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  .step-text { font-size: 0.95rem; line-height: 1.5; }
+  .step-text .hi { color: var(--yellow); font-weight: 800; }
+
+  /* BUTTONS */
+  .btn {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 0.7rem 1.8rem;
+    border: none;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    color: white;
+    box-shadow: 0 4px 15px rgba(124,58,237,0.4);
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(124,58,237,0.6); }
+  .btn-secondary { background: var(--card2); color: var(--text); border: 2px solid rgba(255,255,255,0.15); }
+  .btn-secondary:hover { border-color: var(--purple); }
+
+  /* SCORE */
+  .score-display {
+    text-align: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 3rem;
+    color: var(--yellow);
+    margin: 0.5rem 0;
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 99px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* PROGRESS TRACKER */
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .topic-card {
+    background: var(--card2);
+    border-radius: 14px;
+    padding: 1rem;
+    border: 2px solid rgba(255,255,255,0.07);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .topic-card:hover { transform: translateY(-3px); border-color: var(--purple); }
+  .topic-card .t-icon { font-size: 2rem; }
+  .topic-card .t-name { font-weight: 700; margin-top: 0.3rem; font-size: 0.95rem; }
+  .topic-card .t-progress { height: 6px; background: rgba(255,255,255,0.1); border-radius: 99px; margin-top: 0.5rem; overflow: hidden; }
+  .topic-card .t-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--cyan), var(--green)); }
+
+  hr.divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 1.5rem 0; }
+
+  input[type="number"], input[type="text"] {
+    background: var(--card2);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.5rem 0.8rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 80px;
+    text-align: center;
+  }
+
+  input:focus { border-color: var(--cyan); }
+
+  p { line-height: 1.7; color: #c0c0e0; }
+
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(236,72,153,0.1));
+    border-left: 4px solid var(--purple);
+    padding: 1rem 1.2rem;
+    border-radius: 0 12px 12px 0;
+    margin: 1rem 0;
+  }
+
+  .highlight-box strong { color: var(--purple); }
+
+  /* Responsive */
+  @media (max-width: 500px) {
+    .choices { grid-template-columns: 1fr; }
+    .scale-sides { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🚀 Algebra Adventure</div>
+  <p class="tagline">Level up your math skills — one equation at a time!</p>
+  <div class="xp-bar-container">
+    <div class="xp-bar-inner">
+      <span class="xp-label">⭐ XP</span>
+      <div class="xp-track"><div class="xp-fill" id="xp-fill"></div></div>
+      <span class="xp-label" id="xp-count">0 / 100</span>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <button class="tab-btn active" onclick="showSection('home')">🏠 Home</button>
+  <button class="tab-btn" onclick="showSection('variables')">🎁 Variables</button>
+  <button class="tab-btn" onclick="showSection('equations')">⚖️ Equations</button>
+  <button class="tab-btn" onclick="showSection('graphing')">📈 Graphing</button>
+  <button class="tab-btn" onclick="showSection('quiz')">🧠 Quiz</button>
+  <button class="tab-btn" onclick="showSection('badges')">🏆 Badges</button>
+</nav>
+
+<main>
+
+  <!-- HOME -->
+  <div class="section active" id="home">
+    <div class="card">
+      <div class="card-title"><span>🌟</span> Welcome, Math Explorer!</div>
+      <p>Algebra might sound scary, but it's actually like solving puzzles! In this adventure you'll learn how to use <strong style="color:var(--cyan)">variables</strong>, <strong style="color:var(--pink)">equations</strong>, and even draw <strong style="color:var(--yellow)">graphs</strong>. Earn XP and unlock badges as you go!</p>
+      <div class="highlight-box">
+        <strong>💡 What is Algebra?</strong><br>
+        Algebra uses letters (like <em>x</em> or <em>y</em>) to represent unknown numbers. Your job is to find what those letters are worth!
+      </div>
+    </div>
+
+    <div class="topic-grid">
+      <div class="topic-card" onclick="showSection('variables')">
+        <div class="t-icon">🎁</div>
+        <div class="t-name">Variables</div>
+        <div class="t-progress"><div class="t-fill" id="tp1" style="width:0%"></div></div>
+      </div>
+      <div class="topic-card" onclick="showSection('equations')">
+        <div class="t-icon">⚖️</div>
+        <div class="t-name">Solving Equations</div>
+        <div class="t-progress"><div class="t-fill" id="tp2" style="width:0%"></div></div>
+      </div>
+      <div class="topic-card" onclick="showSection('graphing')">
+        <div class="t-icon">📈</div>
+        <div class="t-name">Graphing Lines</div>
+        <div class="t-progress"><div class="t-fill" id="tp3" style="width:0%"></div></div>
+      </div>
+      <div class="topic-card" onclick="showSection('quiz')">
+        <div class="t-icon">🧠</div>
+        <div class="t-name">Quiz Challenge</div>
+        <div class="t-progress"><div class="t-fill" id="tp4" style="width:0%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VARIABLES -->
+  <div class="section" id="variables">
+    <div class="card">
+      <div class="card-title"><span>🎁</span> What's a Variable?</div>
+      <p>A <strong style="color:var(--cyan)">variable</strong> is a mystery box — it holds a number we don't know yet. We name it with a letter like <em>x</em>. Click the box to reveal the secret!</p>
+
+      <div class="var-demo" id="var-demo">
+        <div class="mystery-box" id="mystery-box" onclick="revealBox()">?</div>
+        <div>
+          <div class="equation-display" id="var-eq">x = ?</div>
+          <p style="margin-top:0.5rem;font-size:0.9rem;color:var(--muted)">Drag the slider to change x:</p>
+          <div class="var-controls">
+            <span style="color:var(--muted);font-size:0.9rem">1</span>
+            <input type="range" class="var-slider" id="var-slider" min="1" max="20" value="5" oninput="updateVar(this.value)">
+            <span style="color:var(--muted);font-size:0.9rem">20</span>
+          </div>
+          <div class="equation-display" id="expr-display">3x + 2 = 17</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🧩</span> Build an Expression</div>
+      <p style="margin-bottom:1rem">Drag the tiles below to the expression box to build your own equation!</p>
+      <div style="font-size:0.85rem;color:var(--muted);margin-bottom:0.5rem">Tile bank:</div>
+      <div class="drag-area" id="tile-bank">
+        <div class="drag-tile num" draggable="true" data-val="3">3</div>
+        <div class="drag-tile var-tile" draggable="true" data-val="x">x</div>
+        <div class="drag-tile op" draggable="true" data-val="+">+</div>
+        <div class="drag-tile num" draggable="true" data-val="5">5</div>
+        <div class="drag-tile op" draggable="true" data-val="=">=</div>
+        <div class="drag-tile num" draggable="true" data-val="2">2</div>
+        <div class="drag-tile num" draggable="true" data-val="7">7</div>
+        <div class="drag-tile op" draggable="true" data-val="−">−</div>
+        <div class="drag-tile var-tile" draggable="true" data-val="y">y</div>
+      </div>
+      <div style="font-size:0.85rem;color:var(--muted);margin:0.8rem 0 0.3rem">Your expression:</div>
+      <div class="drag-area" id="expr-builder" style="min-height:70px;"></div>
+      <button class="btn btn-secondary" style="margin-top:0.5rem" onclick="clearExpr()">🗑️ Clear</button>
+    </div>
+  </div>
+
+  <!-- EQUATIONS -->
+  <div class="section" id="equations">
+    <div class="card">
+      <div class="card-title"><span>⚖️</span> The Balance Scale</div>
+      <p>An equation is like a <strong style="color:var(--yellow)">balance scale</strong>. What's on the left MUST equal what's on the right. When you add or subtract on one side, you must do the same on the other!</p>
+
+      <div class="scale-wrapper">
+        <div style="font-size:0.9rem;color:var(--muted);text-align:center">Equation: <strong style="color:var(--cyan)" id="balance-eq">x + 3 = 8</strong></div>
+
+        <div class="scale-sides">
+          <div class="scale-side left">
+            <span class="scale-value left" id="left-val">x + 3</span>
+            <div class="scale-label">Left Side</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:2rem;">⚖️</div>
+          <div class="scale-side right">
+            <span class="scale-value right" id="right-val">8</span>
+            <div class="scale-label">Right Side</div>
+          </div>
+        </div>
+
+        <div class="scale-status unbalanced" id="scale-status">❓ What is x?</div>
+
+        <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;justify-content:center">
+          <span style="font-weight:700;color:var(--muted)">x =</span>
+          <input type="number" id="balance-input" placeholder="?" style="width:70px" oninput="checkBalance(this.value)">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🪜</span> Step-by-Step Solver</div>
+      <p style="margin-bottom:1rem">Let's solve <span style="color:var(--cyan);font-family:'Fredoka One',cursive;font-size:1.2rem" id="solve-eq-display">2x + 4 = 12</span> together!</p>
+      <div id="steps-container"></div>
+      <div style="display:flex;gap:0.7rem;flex-wrap:wrap;margin-top:1rem">
+        <button class="btn btn-primary" onclick="nextStep()">▶ Next Step</button>
+        <button class="btn btn-secondary" onclick="resetSteps()">🔄 New Problem</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRAPHING -->
+  <div class="section" id="graphing">
+    <div class="card">
+      <div class="card-title"><span>📈</span> Graph a Line</div>
+      <p style="margin-bottom:1rem">Lines in algebra follow the formula <strong style="color:var(--pink)">y = mx + b</strong>. Change <em>m</em> (slope) and <em>b</em> (y-intercept) to see the line move!</p>
+
+      <div class="graph-controls">
+        <div class="graph-input-group">
+          <label>m (slope):</label>
+          <input type="number" id="slope" value="1" step="0.5" oninput="drawGraph()">
+        </div>
+        <div class="graph-input-group">
+          <label>b (y-intercept):</label>
+          <input type="number" id="intercept" value="0" step="1" oninput="drawGraph()">
+        </div>
+      </div>
+
+      <div class="graph-eq" id="graph-eq">y = 1x + 0</div>
+      <canvas id="graph-canvas" width="400" height="400"></canvas>
+
+      <div class="highlight-box" style="margin-top:1rem">
+        <strong>💡 Remember:</strong> <em>m</em> is how steep the line is. <em>b</em> is where the line crosses the y-axis. Positive slope = going up ↗ | Negative slope = going down ↘
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="section" id="quiz">
+    <div class="card">
+      <div class="card-title"><span>🧠</span> Quiz Challenge</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+        <span style="color:var(--muted);font-size:0.9rem">Question <span id="q-num">1</span> of <span id="q-total">10</span></span>
+        <span class="score-display" style="font-size:1.5rem">🏆 <span id="quiz-score">0</span></span>
+      </div>
+
+      <div id="quiz-content">
+        <div class="quiz-q" id="quiz-question"></div>
+        <div class="choices" id="quiz-choices"></div>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+      </div>
+
+      <div id="quiz-done" style="display:none;text-align:center;padding:1rem">
+        <div style="font-size:3rem">🎉</div>
+        <div class="score-display" id="final-score"></div>
+        <p style="margin:0.5rem 0 1rem">Great job, math explorer!</p>
+        <button class="btn btn-primary" onclick="startQuiz()">🔄 Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BADGES -->
+  <div class="section" id="badges">
+    <div class="card">
+      <div class="card-title"><span>🏆</span> Your Badges</div>
+      <p style="margin-bottom:1rem">Earn badges by exploring topics and answering quiz questions!</p>
+      <div class="badges-grid" id="badges-grid"></div>
+    </div>
+  </div>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============ STATE ============
+let xp = 0, quizScore = 0, currentQ = 0, stepIndex = 0;
+let answeredQuestions = new Set();
+let earned = new Set();
+
+const BADGES = [
+  { id:'explorer', icon:'🗺️', name:'Explorer', desc:'Visit all sections' },
+  { id:'variable', icon:'🎁', name:'Variable Pro', desc:'Interact with variables' },
+  { id:'balanced', icon:'⚖️', name:'Balanced', desc:'Solve the scale' },
+  { id:'graphmaster', icon:'📈', name:'Graph Master', desc:'Change the graph' },
+  { id:'quiz5', icon:'🧠', name:'Quiz Ace', desc:'Score 5 in quiz' },
+  { id:'quiz10', icon:'🌟', name:'Perfect 10', desc:'Score 10 in quiz' },
+  { id:'builder', icon:'🧩', name:'Builder', desc:'Use the tile builder' },
+  { id:'solver', icon:'🪜', name:'Solver', desc:'Complete all steps' },
+];
+
+// ============ XP / BADGES ============
+function addXP(amt) {
+  xp = Math.min(xp + amt, 100);
+  document.getElementById('xp-fill').style.width = xp + '%';
+  document.getElementById('xp-count').textContent = xp + ' / 100';
+}
+
+function earnBadge(id) {
+  if (earned.has(id)) return;
+  earned.add(id);
+  renderBadges();
+  showToast('🏅 Badge Unlocked: ' + BADGES.find(b=>b.id===id).name);
+  confetti();
+  addXP(10);
+}
+
+function renderBadges() {
+  const g = document.getElementById('badges-grid');
+  g.innerHTML = BADGES.map(b => `
+    <div class="badge ${earned.has(b.id)?'earned':''}">
+      <span class="badge-icon">${b.icon}</span>
+      <div class="badge-name">${b.name}</div>
+    </div>
+  `).join('');
+}
+
+// ============ NAV ============
+let visitedSections = new Set(['home']);
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const tabs = document.querySelectorAll('.tab-btn');
+  const names = ['home','variables','equations','graphing','quiz','badges'];
+  tabs[names.indexOf(id)]?.classList.add('active');
+
+  visitedSections.add(id);
+  if (visitedSections.size >= 4) earnBadge('explorer');
+
+  if (id === 'graphing') { drawGraph(); earnBadge('graphmaster'); addXP(3); }
+  if (id === 'quiz') startQuiz();
+  if (id === 'badges') renderBadges();
+}
+
+// ============ TOAST ============
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ============ CONFETTI ============
+function confetti() {
+  const colors = ['#7c3aed','#ec4899','#06b6d4','#fbbf24','#10b981'];
+  for (let i = 0; i < 40; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.cssText = `
+      left: ${Math.random()*100}vw;
+      top: -10px;
+      background: ${colors[Math.floor(Math.random()*colors.length)]};
+      width: ${6+Math.random()*8}px;
+      height: ${6+Math.random()*8}px;
+      animation-duration: ${1+Math.random()*2}s;
+      animation-delay: ${Math.random()*0.5}s;
+      border-radius: ${Math.random()>0.5?'50%':'2px'};
+    `;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3000);
+  }
+}
+
+// ============ VARIABLES SECTION ============
+function updateVar(val) {
+  const x = parseInt(val);
+  const result = 3*x + 2;
+  document.getElementById('var-eq').textContent = `x = ${x}`;
+  document.getElementById('expr-display').textContent = `3x + 2 = ${result}   →   3(${x}) + 2 = ${result}`;
+  document.getElementById('mystery-box').textContent = x;
+  earnBadge('variable');
+  addXP(1);
+  updateTopicProgress('tp1', Math.min(100, x*5));
+}
+
+function revealBox() {
+  const x = document.getElementById('var-slider').value;
+  document.getElementById('mystery-box').textContent = x;
+  earnBadge('variable');
+}
+
+// ============ DRAG & DROP ============
+let dragging = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+  setupDrag();
+  renderBadges();
+  initSteps();
+  startQuiz();
+  updateVar(5);
+  initBalance();
+});
+
+function setupDrag() {
+  document.querySelectorAll('.drag-tile').forEach(tile => {
+    tile.addEventListener('dragstart', e => {
+      dragging = tile;
+      e.dataTransfer.setData('text', tile.dataset.val);
+    });
+  });
+
+  const builder = document.getElementById('expr-builder');
+  builder.addEventListener('dragover', e => { e.preventDefault(); builder.classList.add('over'); });
+  builder.addEventListener('dragleave', () => builder.classList.remove('over'));
+  builder.addEventListener('drop', e => {
+    e.preventDefault();
+    builder.classList.remove('over');
+    const val = e.dataTransfer.getData('text');
+    if (!val) return;
+    const classes = dragging ? dragging.className : '';
+    const t = document.createElement('div');
+    t.className = 'drag-tile ' + (classes.includes('num')?'num':classes.includes('var-tile')?'var-tile':'op');
+    t.textContent = val;
+    t.draggable = true;
+    t.dataset.val = val;
+    t.addEventListener('click', () => t.remove());
+    t.title = 'Click to remove';
+    builder.appendChild(t);
+    earnBadge('builder');
+    addXP(2);
+  });
+}
+
+function clearExpr() {
+  document.getElementById('expr-builder').innerHTML = '';
+}
+
+// ============ BALANCE SCALE ============
+const BALANCE_PROBLEMS = [
+  { eq: 'x + 3 = 8', answer: 5 },
+  { eq: 'x − 4 = 6', answer: 10 },
+  { eq: '2x = 14', answer: 7 },
+  { eq: 'x + 10 = 15', answer: 5 },
+  { eq: '3x = 21', answer: 7 },
+];
+let balanceIdx = 0;
+
+function initBalance() {
+  const p = BALANCE_PROBLEMS[balanceIdx];
+  document.getElementById('balance-eq').textContent = p.eq;
+  document.getElementById('left-val').textContent = p.eq.split('=')[0].trim();
+  document.getElementById('right-val').textContent = p.eq.split('=')[1].trim();
+  document.getElementById('balance-input').value = '';
+  document.getElementById('scale-status').textContent = '❓ What is x?';
+  document.getElementById('scale-status').className = 'scale-status unbalanced';
+}
+
+function checkBalance(val) {
+  const p = BALANCE_PROBLEMS[balanceIdx];
+  if (parseInt(val) === p.answer) {
+    document.getElementById('scale-status').textContent = '✅ Balanced! x = ' + val;
+    document.getElementById('scale-status').className = 'scale-status balanced';
+    earnBadge('balanced');
+    addXP(5);
+    updateTopicProgress('tp2', 60);
+    setTimeout(() => {
+      balanceIdx = (balanceIdx+1) % BALANCE_PROBLEMS.length;
+      initBalance();
+    }, 2000);
+  } else if (val.length > 0) {
+    document.getElementById('scale-status').textContent = '❌ Not balanced yet!';
+    document.getElementById('scale-status').className = 'scale-status unbalanced';
+  }
+}
+
+// ============ STEP SOLVER ============
+const SOLVE_PROBLEMS = [
+  {
+    eq: '2x + 4 = 12',
+    steps: [
+      { t: 'Write the equation', h: '2x + 4 = 12' },
+      { t: 'Subtract 4 from both sides', h: '2x + 4 − 4 = 12 − 4  →  2x = 8', note: 'We want to get x alone. Subtract 4!' },
+      { t: 'Divide both sides by 2', h: '2x ÷ 2 = 8 ÷ 2  →  x = 4', note: 'Divide to undo multiplication.' },
+      { t: 'Check your answer!', h: '2(4) + 4 = 8 + 4 = 12 ✅', note: 'Always plug x back in to check!' },
+    ]
+  },
+  {
+    eq: '3x − 6 = 9',
+    steps: [
+      { t: 'Write the equation', h: '3x − 6 = 9' },
+      { t: 'Add 6 to both sides', h: '3x − 6 + 6 = 9 + 6  →  3x = 15' },
+      { t: 'Divide both sides by 3', h: '3x ÷ 3 = 15 ÷ 3  →  x = 5' },
+      { t: 'Check!', h: '3(5) − 6 = 15 − 6 = 9 ✅' },
+    ]
+  },
+];
+
+let solveIdx = 0;
+
+function initSteps() {
+  document.getElementById('steps-container').innerHTML = '';
+  stepIndex = 0;
+  const p = SOLVE_PROBLEMS[solveIdx];
+  document.getElementById('solve-eq-display').textContent = p.eq;
+}
+
+function nextStep() {
+  const p = SOLVE_PROBLEMS[solveIdx];
+  if (stepIndex >= p.steps.length) return;
+  const s = p.steps[stepIndex];
+  const div = document.createElement('div');
+  div.className = 'step-line';
+  div.innerHTML = `
+    <div class="step-num">${stepIndex+1}</div>
+    <div class="step-text">
+      <strong>${s.t}</strong><br>
+      <span class="hi">${s.h}</span>
+      ${s.note ? `<br><span style="color:var(--muted);font-size:0.85rem">${s.note}</span>` : ''}
+    </div>
+  `;
+  document.getElementById('steps-container').appendChild(div);
+  stepIndex++;
+  addXP(2);
+  updateTopicProgress('tp2', 30 + stepIndex*15);
+  if (stepIndex === p.steps.length) {
+    earnBadge('solver');
+    confetti();
+  }
+}
+
+function resetSteps() {
+  solveIdx = (solveIdx+1) % SOLVE_PROBLEMS.length;
+  initSteps();
+}
+
+// ============ GRAPHING ============
+function drawGraph() {
+  const canvas = document.getElementById('graph-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const m = parseFloat(document.getElementById('slope').value) || 0;
+  const b = parseFloat(document.getElementById('intercept').value) || 0;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Background grid
+  ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= 20; i++) {
+    const x = i * W/20, y = i * H/20;
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+  }
+
+  const cx = W/2, cy = H/2, scale = 20;
+
+  // Axes
+  ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(W, cy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, H); ctx.stroke();
+
+  // Axis arrows
+  ctx.fillStyle = 'rgba(255,255,255,0.3)';
+  ctx.beginPath(); ctx.moveTo(W-5, cy); ctx.lineTo(W-12, cy-5); ctx.lineTo(W-12, cy+5); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(cx, 5); ctx.lineTo(cx-5, 12); ctx.lineTo(cx+5, 12); ctx.fill();
+
+  // Labels
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.font = '12px Nunito';
+  ctx.fillText('x', W-12, cy-8);
+  ctx.fillText('y', cx+6, 14);
+
+  // Numbers on axes
+  ctx.font = '10px Nunito';
+  for (let i = -10; i <= 10; i++) {
+    if (i !== 0) {
+      ctx.fillText(i, cx + i*scale - 5, cy + 14);
+      ctx.fillText(-i, cx + 5, cy + i*scale + 4);
+    }
+  }
+
+  // Line
+  const gradient = ctx.createLinearGradient(0, 0, W, H);
+  gradient.addColorStop(0, '#06b6d4');
+  gradient.addColorStop(0.5, '#7c3aed');
+  gradient.addColorStop(1, '#ec4899');
+
+  ctx.strokeStyle = gradient;
+  ctx.lineWidth = 3;
+  ctx.shadowColor = '#7c3aed';
+  ctx.shadowBlur = 8;
+  ctx.beginPath();
+  let started = false;
+  for (let px = 0; px <= W; px++) {
+    const xVal = (px - cx) / scale;
+    const yVal = m * xVal + b;
+    const py = cy - yVal * scale;
+    if (!started) { ctx.moveTo(px, py); started = true; }
+    else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  // Y-intercept dot
+  const yIntPy = cy - b * scale;
+  ctx.fillStyle = '#fbbf24';
+  ctx.shadowColor = '#fbbf24';
+  ctx.shadowBlur = 10;
+  ctx.beginPath();
+  ctx.arc(cx, yIntPy, 6, 0, Math.PI*2);
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  // Equation label
+  const mStr = m === 1 ? '' : (m === -1 ? '-' : m);
+  const bStr = b === 0 ? '' : (b > 0 ? ` + ${b}` : ` − ${Math.abs(b)}`);
+  document.getElementById('graph-eq').textContent = `y = ${mStr}x${bStr}`;
+  updateTopicProgress('tp3', 80);
+  addXP(1);
+}
+
+// ============ QUIZ ============
+const QUESTIONS = [
+  { q: 'If x + 5 = 12, what is x?', choices: ['5','7','12','17'], ans: 1 },
+  { q: 'What does a variable represent?', choices: ['A certain number','A letter only','An unknown number','An operation'], ans: 2 },
+  { q: 'Solve: 3x = 18', choices: ['x = 3','x = 6','x = 15','x = 54'], ans: 1 },
+  { q: 'In y = mx + b, what is m?', choices: ['y-intercept','The slope','The answer','A variable'], ans: 1 },
+  { q: 'Solve: x − 4 = 9', choices: ['x = 5','x = 13','x = 36','x = 4'], ans: 1 },
+  { q: 'What does it mean for an equation to be "balanced"?', choices: ['Both sides are zero','Both sides are equal','It has no variables','It has one solution'], ans: 1 },
+  { q: 'If 2x + 3 = 11, what is x?', choices: ['x = 4','x = 7','x = 3','x = 8'], ans: 0 },
+  { q: 'What is the y-intercept of y = 2x + 5?', choices: ['2','5','10','0'], ans: 1 },
+  { q: 'Simplify: 4x − x', choices: ['4x','3x','5x','x'], ans: 1 },
+  { q: 'A line goes up from left to right. Its slope is…', choices: ['Negative','Zero','Positive','Undefined'], ans: 2 },
+];
+
+let qOrder = [], qIndex = 0;
+
+function startQuiz() {
+  quizScore = 0;
+  qIndex = 0;
+  qOrder = [...Array(QUESTIONS.length).keys()].sort(() => Math.random()-0.5);
+  document.getElementById('quiz-score').textContent = 0;
+  document.getElementById('quiz-done').style.display = 'none';
+  document.getElementById('quiz-content').style.display = 'block';
+  document.getElementById('q-total').textContent = QUESTIONS.length;
+  loadQuestion();
+}
+
+function loadQuestion() {
+  if (qIndex >= QUESTIONS.length) { endQuiz(); return; }
+  const q = QUESTIONS[qOrder[qIndex]];
+  document.getElementById('q-num').textContent = qIndex+1;
+  document.getElementById('quiz-question').innerHTML = `<span class="eq">${q.q}</span>`;
+  document.getElementById('quiz-feedback').textContent = '';
+  const ch = document.getElementById('quiz-choices');
+  ch.innerHTML = '';
+  q.choices.forEach((c, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = c;
+    btn.onclick = () => answerQ(i, q.ans, btn);
+    ch.appendChild(btn);
+  });
+}
+
+function answerQ(chosen, correct, btn) {
+  document.querySelectorAll('.choice-btn').forEach(b => b.onclick = null);
+  const fb = document.getElementById('quiz-feedback');
+  if (chosen === correct) {
+    btn.classList.add('correct');
+    quizScore++;
+    document.getElementById('quiz-score').textContent = quizScore;
+    fb.innerHTML = '✅ Correct! +10 XP';
+    fb.style.color = 'var(--green)';
+    addXP(10);
+    confetti();
+    updateTopicProgress('tp4', Math.min(100, quizScore*10));
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.choice-btn')[correct].classList.add('correct');
+    fb.innerHTML = '❌ Not quite! The right answer is highlighted.';
+    fb.style.color = '#ef4444';
+  }
+  qIndex++;
+  setTimeout(loadQuestion, 1500);
+}
+
+function endQuiz() {
+  document.getElementById('quiz-content').style.display = 'none';
+  document.getElementById('quiz-done').style.display = 'block';
+  document.getElementById('final-score').textContent = `${quizScore} / ${QUESTIONS.length}`;
+  if (quizScore >= 5) earnBadge('quiz5');
+  if (quizScore >= 10) earnBadge('quiz10');
+  confetti();
+}
+
+// ============ PROGRESS ============
+function updateTopicProgress(id, pct) {
+  const el = document.getElementById(id);
+  if (el) el.style.width = Math.min(100, pct) + '%';
+}
+
+// ============ INIT ============
+window.onload = () => {
+  renderBadges();
+  updateVar(5);
+  initBalance();
+  initSteps();
+  startQuiz();
+  setTimeout(() => showSection('home'), 50);
+};
+</script>
+</body>
+</html>
