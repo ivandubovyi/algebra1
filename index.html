@@ -30,7 +30,6 @@
     overflow-x: hidden;
   }
 
-  /* Stars background */
   body::before {
     content: '';
     position: fixed;
@@ -50,7 +49,6 @@
     z-index: 0;
   }
 
-  /* HEADER */
   header {
     text-align: center;
     padding: 3rem 1rem 2rem;
@@ -80,7 +78,6 @@
     font-weight: 600;
   }
 
-  /* XP BAR */
   .xp-bar-container {
     max-width: 500px;
     margin: 1rem auto;
@@ -128,7 +125,6 @@
 
   @keyframes shimmer { to { left: 200%; } }
 
-  /* NAV TABS */
   nav {
     display: flex;
     justify-content: center;
@@ -162,7 +158,6 @@
     box-shadow: 0 4px 15px rgba(124,58,237,0.5);
   }
 
-  /* MAIN CONTENT */
   main {
     max-width: 900px;
     margin: 0 auto;
@@ -179,7 +174,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* CARDS */
   .card {
     background: var(--card);
     border-radius: 20px;
@@ -200,7 +194,6 @@
 
   .card-title span { font-size: 1.8rem; }
 
-  /* VARIABLE VISUALIZER */
   .var-demo {
     display: flex;
     align-items: center;
@@ -274,7 +267,6 @@
     letter-spacing: 0.05em;
   }
 
-  /* BALANCE SCALE */
   .scale-wrapper {
     display: flex;
     flex-direction: column;
@@ -329,7 +321,6 @@
   .scale-status.balanced { background: rgba(16,185,129,0.2); color: var(--green); }
   .scale-status.unbalanced { background: rgba(249,115,22,0.2); color: var(--orange); }
 
-  /* QUIZ SECTION */
   .quiz-q {
     font-size: 1.3rem;
     font-weight: 700;
@@ -379,7 +370,6 @@
     gap: 0.5rem;
   }
 
-  /* GRAPHING */
   #graph-canvas {
     width: 100%;
     max-width: 400px;
@@ -428,7 +418,6 @@
     margin: 0.5rem 0;
   }
 
-  /* BADGES */
   .badges-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -465,7 +454,6 @@
   .badge-name { font-size: 0.75rem; font-weight: 700; margin-top: 0.4rem; color: var(--muted); }
   .badge.earned .badge-name { color: var(--yellow); }
 
-  /* CONFETTI */
   .confetti-piece {
     position: fixed;
     width: 10px;
@@ -481,7 +469,6 @@
     100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
   }
 
-  /* DRAG GAME */
   .drag-area {
     min-height: 60px;
     background: var(--card2);
@@ -513,7 +500,6 @@
   .drag-tile.var-tile { background: rgba(124,58,237,0.2); color: #a78bfa; border: 1px solid rgba(124,58,237,0.3); }
   .drag-tile.op { background: rgba(251,191,36,0.15); color: var(--yellow); border: 1px solid rgba(251,191,36,0.3); }
 
-  /* SOLVE STEPS */
   .step-line {
     display: flex;
     align-items: flex-start;
@@ -539,7 +525,6 @@
   .step-text { font-size: 0.95rem; line-height: 1.5; }
   .step-text .hi { color: var(--yellow); font-weight: 800; }
 
-  /* BUTTONS */
   .btn {
     font-family: 'Nunito', sans-serif;
     font-weight: 800;
@@ -561,7 +546,6 @@
   .btn-secondary { background: var(--card2); color: var(--text); border: 2px solid rgba(255,255,255,0.15); }
   .btn-secondary:hover { border-color: var(--purple); }
 
-  /* SCORE */
   .score-display {
     text-align: center;
     font-family: 'Fredoka One', cursive;
@@ -570,7 +554,6 @@
     margin: 0.5rem 0;
   }
 
-  /* TOAST */
   .toast {
     position: fixed;
     bottom: 2rem;
@@ -589,7 +572,6 @@
 
   .toast.show { transform: translateX(-50%) translateY(0); }
 
-  /* PROGRESS TRACKER */
   .topic-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -643,7 +625,6 @@
 
   .highlight-box strong { color: var(--purple); }
 
-  /* Responsive */
   @media (max-width: 500px) {
     .choices { grid-template-columns: 1fr; }
     .scale-sides { flex-direction: column; align-items: center; }
@@ -654,7 +635,7 @@
 
 <header>
   <div class="logo">🚀 Algebra Adventure</div>
-  <p class="tagline">Level up your math skills — one equation at a time!</p>
+  <p class="tagline">ngl algebra is actually not that bad once it clicks</p>
   <div class="xp-bar-container">
     <div class="xp-bar-inner">
       <span class="xp-label">⭐ XP</span>
@@ -678,11 +659,11 @@
   <!-- HOME -->
   <div class="section active" id="home">
     <div class="card">
-      <div class="card-title"><span>🌟</span> Welcome, Math Explorer!</div>
-      <p>Algebra might sound scary, but it's actually like solving puzzles! In this adventure you'll learn how to use <strong style="color:var(--cyan)">variables</strong>, <strong style="color:var(--pink)">equations</strong>, and even draw <strong style="color:var(--yellow)">graphs</strong>. Earn XP and unlock badges as you go!</p>
+      <div class="card-title"><span>🌟</span> hey, welcome!</div>
+      <p>ok so algebra sounds way worse than it actually is. it's basically just solving puzzles where a letter is standing in for a number you don't know yet. once that clicks, everything else makes way more sense. explore the tabs, earn XP, and unlock badges as you go — it's actually pretty satisfying.</p>
       <div class="highlight-box">
-        <strong>💡 What is Algebra?</strong><br>
-        Algebra uses letters (like <em>x</em> or <em>y</em>) to represent unknown numbers. Your job is to find what those letters are worth!
+        <strong>💡 so what even is algebra?</strong><br>
+        basically you use letters like <em>x</em> or <em>y</em> to represent numbers you haven't found yet. your whole job is to figure out what those letters are worth. that's it, literally.
       </div>
     </div>
 
@@ -713,14 +694,14 @@
   <!-- VARIABLES -->
   <div class="section" id="variables">
     <div class="card">
-      <div class="card-title"><span>🎁</span> What's a Variable?</div>
-      <p>A <strong style="color:var(--cyan)">variable</strong> is a mystery box — it holds a number we don't know yet. We name it with a letter like <em>x</em>. Click the box to reveal the secret!</p>
+      <div class="card-title"><span>🎁</span> what's a variable?</div>
+      <p>a <strong style="color:var(--cyan)">variable</strong> is basically a mystery box — it's just holding a number we don't know yet. we call it something like <em>x</em> so we have a name for it. click the box if you want to see what's inside!</p>
 
       <div class="var-demo" id="var-demo">
         <div class="mystery-box" id="mystery-box" onclick="revealBox()">?</div>
         <div>
           <div class="equation-display" id="var-eq">x = ?</div>
-          <p style="margin-top:0.5rem;font-size:0.9rem;color:var(--muted)">Drag the slider to change x:</p>
+          <p style="margin-top:0.5rem;font-size:0.9rem;color:var(--muted)">drag the slider to change x:</p>
           <div class="var-controls">
             <span style="color:var(--muted);font-size:0.9rem">1</span>
             <input type="range" class="var-slider" id="var-slider" min="1" max="20" value="5" oninput="updateVar(this.value)">
@@ -732,9 +713,9 @@
     </div>
 
     <div class="card">
-      <div class="card-title"><span>🧩</span> Build an Expression</div>
-      <p style="margin-bottom:1rem">Drag the tiles below to the expression box to build your own equation!</p>
-      <div style="font-size:0.85rem;color:var(--muted);margin-bottom:0.5rem">Tile bank:</div>
+      <div class="card-title"><span>🧩</span> build your own expression</div>
+      <p style="margin-bottom:1rem">drag the tiles into the box to put together your own equation. you can click any tile in the box to delete it.</p>
+      <div style="font-size:0.85rem;color:var(--muted);margin-bottom:0.5rem">tiles you can use:</div>
       <div class="drag-area" id="tile-bank">
         <div class="drag-tile num" draggable="true" data-val="3">3</div>
         <div class="drag-tile var-tile" draggable="true" data-val="x">x</div>
@@ -746,34 +727,34 @@
         <div class="drag-tile op" draggable="true" data-val="−">−</div>
         <div class="drag-tile var-tile" draggable="true" data-val="y">y</div>
       </div>
-      <div style="font-size:0.85rem;color:var(--muted);margin:0.8rem 0 0.3rem">Your expression:</div>
+      <div style="font-size:0.85rem;color:var(--muted);margin:0.8rem 0 0.3rem">your expression:</div>
       <div class="drag-area" id="expr-builder" style="min-height:70px;"></div>
-      <button class="btn btn-secondary" style="margin-top:0.5rem" onclick="clearExpr()">🗑️ Clear</button>
+      <button class="btn btn-secondary" style="margin-top:0.5rem" onclick="clearExpr()">🗑️ clear it</button>
     </div>
   </div>
 
   <!-- EQUATIONS -->
   <div class="section" id="equations">
     <div class="card">
-      <div class="card-title"><span>⚖️</span> The Balance Scale</div>
-      <p>An equation is like a <strong style="color:var(--yellow)">balance scale</strong>. What's on the left MUST equal what's on the right. When you add or subtract on one side, you must do the same on the other!</p>
+      <div class="card-title"><span>⚖️</span> the balance scale thing</div>
+      <p>think of an equation like a <strong style="color:var(--yellow)">scale at the grocery store</strong>. whatever's on the left has to weigh the same as what's on the right. if you do something to one side, you have to do the exact same thing to the other side or it tips over.</p>
 
       <div class="scale-wrapper">
-        <div style="font-size:0.9rem;color:var(--muted);text-align:center">Equation: <strong style="color:var(--cyan)" id="balance-eq">x + 3 = 8</strong></div>
+        <div style="font-size:0.9rem;color:var(--muted);text-align:center">equation: <strong style="color:var(--cyan)" id="balance-eq">x + 3 = 8</strong></div>
 
         <div class="scale-sides">
           <div class="scale-side left">
             <span class="scale-value left" id="left-val">x + 3</span>
-            <div class="scale-label">Left Side</div>
+            <div class="scale-label">left side</div>
           </div>
           <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:2rem;">⚖️</div>
           <div class="scale-side right">
             <span class="scale-value right" id="right-val">8</span>
-            <div class="scale-label">Right Side</div>
+            <div class="scale-label">right side</div>
           </div>
         </div>
 
-        <div class="scale-status unbalanced" id="scale-status">❓ What is x?</div>
+        <div class="scale-status unbalanced" id="scale-status">❓ so what is x?</div>
 
         <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;justify-content:center">
           <span style="font-weight:700;color:var(--muted)">x =</span>
@@ -783,12 +764,12 @@
     </div>
 
     <div class="card">
-      <div class="card-title"><span>🪜</span> Step-by-Step Solver</div>
-      <p style="margin-bottom:1rem">Let's solve <span style="color:var(--cyan);font-family:'Fredoka One',cursive;font-size:1.2rem" id="solve-eq-display">2x + 4 = 12</span> together!</p>
+      <div class="card-title"><span>🪜</span> let me walk you through it</div>
+      <p style="margin-bottom:1rem">we're gonna solve <span style="color:var(--cyan);font-family:'Fredoka One',cursive;font-size:1.2rem" id="solve-eq-display">2x + 4 = 12</span> step by step. just hit next step each time.</p>
       <div id="steps-container"></div>
       <div style="display:flex;gap:0.7rem;flex-wrap:wrap;margin-top:1rem">
-        <button class="btn btn-primary" onclick="nextStep()">▶ Next Step</button>
-        <button class="btn btn-secondary" onclick="resetSteps()">🔄 New Problem</button>
+        <button class="btn btn-primary" onclick="nextStep()">▶ next step</button>
+        <button class="btn btn-secondary" onclick="resetSteps()">🔄 try a different one</button>
       </div>
     </div>
   </div>
@@ -796,8 +777,8 @@
   <!-- GRAPHING -->
   <div class="section" id="graphing">
     <div class="card">
-      <div class="card-title"><span>📈</span> Graph a Line</div>
-      <p style="margin-bottom:1rem">Lines in algebra follow the formula <strong style="color:var(--pink)">y = mx + b</strong>. Change <em>m</em> (slope) and <em>b</em> (y-intercept) to see the line move!</p>
+      <div class="card-title"><span>📈</span> graphing lines</div>
+      <p style="margin-bottom:1rem">every straight line follows the formula <strong style="color:var(--pink)">y = mx + b</strong>. change <em>m</em> (that's the slope) and <em>b</em> (where it hits the y-axis) and watch the line move around.</p>
 
       <div class="graph-controls">
         <div class="graph-input-group">
@@ -814,7 +795,7 @@
       <canvas id="graph-canvas" width="400" height="400"></canvas>
 
       <div class="highlight-box" style="margin-top:1rem">
-        <strong>💡 Remember:</strong> <em>m</em> is how steep the line is. <em>b</em> is where the line crosses the y-axis. Positive slope = going up ↗ | Negative slope = going down ↘
+        <strong>💡 quick reminder:</strong> <em>m</em> controls how steep the line is, and <em>b</em> is just where it crosses the y-axis. positive slope means it goes up as you move right ↗ and negative means it goes down ↘
       </div>
     </div>
   </div>
@@ -822,9 +803,9 @@
   <!-- QUIZ -->
   <div class="section" id="quiz">
     <div class="card">
-      <div class="card-title"><span>🧠</span> Quiz Challenge</div>
+      <div class="card-title"><span>🧠</span> quiz time 👀</div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-        <span style="color:var(--muted);font-size:0.9rem">Question <span id="q-num">1</span> of <span id="q-total">10</span></span>
+        <span style="color:var(--muted);font-size:0.9rem">question <span id="q-num">1</span> of <span id="q-total">10</span></span>
         <span class="score-display" style="font-size:1.5rem">🏆 <span id="quiz-score">0</span></span>
       </div>
 
@@ -837,8 +818,8 @@
       <div id="quiz-done" style="display:none;text-align:center;padding:1rem">
         <div style="font-size:3rem">🎉</div>
         <div class="score-display" id="final-score"></div>
-        <p style="margin:0.5rem 0 1rem">Great job, math explorer!</p>
-        <button class="btn btn-primary" onclick="startQuiz()">🔄 Play Again</button>
+        <p style="margin:0.5rem 0 1rem">not bad at all!!</p>
+        <button class="btn btn-primary" onclick="startQuiz()">🔄 go again</button>
       </div>
     </div>
   </div>
@@ -846,8 +827,8 @@
   <!-- BADGES -->
   <div class="section" id="badges">
     <div class="card">
-      <div class="card-title"><span>🏆</span> Your Badges</div>
-      <p style="margin-bottom:1rem">Earn badges by exploring topics and answering quiz questions!</p>
+      <div class="card-title"><span>🏆</span> your badges</div>
+      <p style="margin-bottom:1rem">you get these by exploring the different sections and doing well on the quiz. some are easier to unlock than others!</p>
       <div class="badges-grid" id="badges-grid"></div>
     </div>
   </div>
@@ -857,7 +838,6 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ============ STATE ============
 let xp = 0, quizScore = 0, currentQ = 0, stepIndex = 0;
 let answeredQuestions = new Set();
 let earned = new Set();
@@ -873,7 +853,6 @@ const BADGES = [
   { id:'solver', icon:'🪜', name:'Solver', desc:'Complete all steps' },
 ];
 
-// ============ XP / BADGES ============
 function addXP(amt) {
   xp = Math.min(xp + amt, 100);
   document.getElementById('xp-fill').style.width = xp + '%';
@@ -899,7 +878,6 @@ function renderBadges() {
   `).join('');
 }
 
-// ============ NAV ============
 let visitedSections = new Set(['home']);
 
 function showSection(id) {
@@ -918,7 +896,6 @@ function showSection(id) {
   if (id === 'badges') renderBadges();
 }
 
-// ============ TOAST ============
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -926,7 +903,6 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-// ============ CONFETTI ============
 function confetti() {
   const colors = ['#7c3aed','#ec4899','#06b6d4','#fbbf24','#10b981'];
   for (let i = 0; i < 40; i++) {
@@ -947,7 +923,6 @@ function confetti() {
   }
 }
 
-// ============ VARIABLES SECTION ============
 function updateVar(val) {
   const x = parseInt(val);
   const result = 3*x + 2;
@@ -965,7 +940,6 @@ function revealBox() {
   earnBadge('variable');
 }
 
-// ============ DRAG & DROP ============
 let dragging = null;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1011,7 +985,6 @@ function clearExpr() {
   document.getElementById('expr-builder').innerHTML = '';
 }
 
-// ============ BALANCE SCALE ============
 const BALANCE_PROBLEMS = [
   { eq: 'x + 3 = 8', answer: 5 },
   { eq: 'x − 4 = 6', answer: 10 },
@@ -1027,14 +1000,14 @@ function initBalance() {
   document.getElementById('left-val').textContent = p.eq.split('=')[0].trim();
   document.getElementById('right-val').textContent = p.eq.split('=')[1].trim();
   document.getElementById('balance-input').value = '';
-  document.getElementById('scale-status').textContent = '❓ What is x?';
+  document.getElementById('scale-status').textContent = '❓ so what is x?';
   document.getElementById('scale-status').className = 'scale-status unbalanced';
 }
 
 function checkBalance(val) {
   const p = BALANCE_PROBLEMS[balanceIdx];
   if (parseInt(val) === p.answer) {
-    document.getElementById('scale-status').textContent = '✅ Balanced! x = ' + val;
+    document.getElementById('scale-status').textContent = '✅ yes!! x = ' + val;
     document.getElementById('scale-status').className = 'scale-status balanced';
     earnBadge('balanced');
     addXP(5);
@@ -1044,29 +1017,28 @@ function checkBalance(val) {
       initBalance();
     }, 2000);
   } else if (val.length > 0) {
-    document.getElementById('scale-status').textContent = '❌ Not balanced yet!';
+    document.getElementById('scale-status').textContent = '❌ not quite, try again';
     document.getElementById('scale-status').className = 'scale-status unbalanced';
   }
 }
 
-// ============ STEP SOLVER ============
 const SOLVE_PROBLEMS = [
   {
     eq: '2x + 4 = 12',
     steps: [
-      { t: 'Write the equation', h: '2x + 4 = 12' },
-      { t: 'Subtract 4 from both sides', h: '2x + 4 − 4 = 12 − 4  →  2x = 8', note: 'We want to get x alone. Subtract 4!' },
-      { t: 'Divide both sides by 2', h: '2x ÷ 2 = 8 ÷ 2  →  x = 4', note: 'Divide to undo multiplication.' },
-      { t: 'Check your answer!', h: '2(4) + 4 = 8 + 4 = 12 ✅', note: 'Always plug x back in to check!' },
+      { t: 'start with the equation', h: '2x + 4 = 12' },
+      { t: 'subtract 4 from both sides', h: '2x + 4 − 4 = 12 − 4  →  2x = 8', note: 'we want x by itself, so we get rid of the +4 by subtracting it from both sides' },
+      { t: 'divide both sides by 2', h: '2x ÷ 2 = 8 ÷ 2  →  x = 4', note: 'x is being multiplied by 2, so we divide to undo that' },
+      { t: 'check your answer', h: '2(4) + 4 = 8 + 4 = 12 ✅', note: 'always plug x back in to make sure it works — this is how you know you\'re right' },
     ]
   },
   {
     eq: '3x − 6 = 9',
     steps: [
-      { t: 'Write the equation', h: '3x − 6 = 9' },
-      { t: 'Add 6 to both sides', h: '3x − 6 + 6 = 9 + 6  →  3x = 15' },
-      { t: 'Divide both sides by 3', h: '3x ÷ 3 = 15 ÷ 3  →  x = 5' },
-      { t: 'Check!', h: '3(5) − 6 = 15 − 6 = 9 ✅' },
+      { t: 'start with the equation', h: '3x − 6 = 9' },
+      { t: 'add 6 to both sides', h: '3x − 6 + 6 = 9 + 6  →  3x = 15' },
+      { t: 'divide both sides by 3', h: '3x ÷ 3 = 15 ÷ 3  →  x = 5' },
+      { t: 'check it', h: '3(5) − 6 = 15 − 6 = 9 ✅' },
     ]
   },
 ];
@@ -1109,7 +1081,6 @@ function resetSteps() {
   initSteps();
 }
 
-// ============ GRAPHING ============
 function drawGraph() {
   const canvas = document.getElementById('graph-canvas');
   const ctx = canvas.getContext('2d');
@@ -1119,7 +1090,6 @@ function drawGraph() {
 
   ctx.clearRect(0, 0, W, H);
 
-  // Background grid
   ctx.strokeStyle = 'rgba(255,255,255,0.05)';
   ctx.lineWidth = 1;
   for (let i = 0; i <= 20; i++) {
@@ -1130,24 +1100,20 @@ function drawGraph() {
 
   const cx = W/2, cy = H/2, scale = 20;
 
-  // Axes
   ctx.strokeStyle = 'rgba(255,255,255,0.3)';
   ctx.lineWidth = 2;
   ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(W, cy); ctx.stroke();
   ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, H); ctx.stroke();
 
-  // Axis arrows
   ctx.fillStyle = 'rgba(255,255,255,0.3)';
   ctx.beginPath(); ctx.moveTo(W-5, cy); ctx.lineTo(W-12, cy-5); ctx.lineTo(W-12, cy+5); ctx.fill();
   ctx.beginPath(); ctx.moveTo(cx, 5); ctx.lineTo(cx-5, 12); ctx.lineTo(cx+5, 12); ctx.fill();
 
-  // Labels
   ctx.fillStyle = 'rgba(255,255,255,0.4)';
   ctx.font = '12px Nunito';
   ctx.fillText('x', W-12, cy-8);
   ctx.fillText('y', cx+6, 14);
 
-  // Numbers on axes
   ctx.font = '10px Nunito';
   for (let i = -10; i <= 10; i++) {
     if (i !== 0) {
@@ -1156,7 +1122,6 @@ function drawGraph() {
     }
   }
 
-  // Line
   const gradient = ctx.createLinearGradient(0, 0, W, H);
   gradient.addColorStop(0, '#06b6d4');
   gradient.addColorStop(0.5, '#7c3aed');
@@ -1178,7 +1143,6 @@ function drawGraph() {
   ctx.stroke();
   ctx.shadowBlur = 0;
 
-  // Y-intercept dot
   const yIntPy = cy - b * scale;
   ctx.fillStyle = '#fbbf24';
   ctx.shadowColor = '#fbbf24';
@@ -1188,7 +1152,6 @@ function drawGraph() {
   ctx.fill();
   ctx.shadowBlur = 0;
 
-  // Equation label
   const mStr = m === 1 ? '' : (m === -1 ? '-' : m);
   const bStr = b === 0 ? '' : (b > 0 ? ` + ${b}` : ` − ${Math.abs(b)}`);
   document.getElementById('graph-eq').textContent = `y = ${mStr}x${bStr}`;
@@ -1196,7 +1159,6 @@ function drawGraph() {
   addXP(1);
 }
 
-// ============ QUIZ ============
 const QUESTIONS = [
   { q: 'If x + 5 = 12, what is x?', choices: ['5','7','12','17'], ans: 1 },
   { q: 'What does a variable represent?', choices: ['A certain number','A letter only','An unknown number','An operation'], ans: 2 },
@@ -1247,7 +1209,7 @@ function answerQ(chosen, correct, btn) {
     btn.classList.add('correct');
     quizScore++;
     document.getElementById('quiz-score').textContent = quizScore;
-    fb.innerHTML = '✅ Correct! +10 XP';
+    fb.innerHTML = '✅ yep, that\'s right! +10 XP';
     fb.style.color = 'var(--green)';
     addXP(10);
     confetti();
@@ -1255,7 +1217,7 @@ function answerQ(chosen, correct, btn) {
   } else {
     btn.classList.add('wrong');
     document.querySelectorAll('.choice-btn')[correct].classList.add('correct');
-    fb.innerHTML = '❌ Not quite! The right answer is highlighted.';
+    fb.innerHTML = '❌ not this time — correct answer is highlighted';
     fb.style.color = '#ef4444';
   }
   qIndex++;
@@ -1271,13 +1233,11 @@ function endQuiz() {
   confetti();
 }
 
-// ============ PROGRESS ============
 function updateTopicProgress(id, pct) {
   const el = document.getElementById(id);
   if (el) el.style.width = Math.min(100, pct) + '%';
 }
 
-// ============ INIT ============
 window.onload = () => {
   renderBadges();
   updateVar(5);
